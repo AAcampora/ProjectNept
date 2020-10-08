@@ -1,4 +1,1 @@
-﻿  main.cpp
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(77): warning C4715: 'checkGLFW': not all control paths return a value
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(87): warning C4715: 'gladInit': not all control paths return a value
-  ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe
+﻿  ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe

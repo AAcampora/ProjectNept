@@ -135,9 +135,20 @@
     <ClCompile Include="..\Additional Dependencies\glad\src\glad.c" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderCompiler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="ShaderCompiler.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="fragmentShader.txt" />
+    <Text Include="vertexShader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\Alessio\Pictures\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
