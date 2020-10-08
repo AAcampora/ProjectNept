@@ -30,6 +30,9 @@
     <ClCompile Include="ShaderCompiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -50,8 +53,11 @@
     <Text Include="fragmentShader.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\Alessio\Pictures\wall.jpg">
-      <Filter>Textures</Filter>
+    <Image Include="wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="container.jpg">
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 #include<glad/glad.h>	
 #include<GLFW/glfw3.h>
+#include"stb_image.h"
 #include <iostream>
 
 #include "Vertex.h"
@@ -15,6 +16,7 @@ public:
 	void CompileShaders();
 	void CreateShaderProgram();
 	void BufferHandler();
+	void textureHandler();
 private:
 	unsigned int VBO; //Vertex buffer Object ID
 	unsigned int VAO; //Vertex array Object ID
@@ -22,5 +24,5 @@ private:
 	unsigned int vertexShader;
 	unsigned int fragmentShader;
 	unsigned int shaderProgram;
-	char ColorTriangle = 'r';
+	unsigned int texture;
 };

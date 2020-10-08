@@ -1,22 +1,27 @@
 #include "Engine.h"
 
 //The value of each point of the vertices
-Vertex vertices[] = {
-	{-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f},
-	{0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f},
-	{0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f}
+//Vertex vertices[] = {
+//	{0.5f,  0.5f, 0.0f,		1.0f, 0.0f, 0.0f,	1.0f, 1.0f}, //top right
+//	{0.5f, -0.5f, 0.0f,	    0.0f, 1.0f, 0.0f,	1.0f, 0.0f}, //bottom right
+//	{-0.5f, -0.5f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f}, //bottom left
+//	{-0.5f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f} //top left
+//};
+
+float vertices[] = {
+	// positions          // colors           // texture coords
+	 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
+	 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
+	-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
 };
 
 //The indices are what we are going to use to connect each points in order to make a triangle
 unsigned int indices[] = {
-	1, 2, 0,   // first triangle
+	0, 1, 3,// first triangle
+	1, 2, 3 //second triangle
 };
 
-float texCoords[] = {
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-	0.5f, 1.0f
-};
 NeptShark::NeptShark(GLFWwindow* window)
 {
 	ShaderComp* sCompiler = new ShaderComp("vertexShader.txt", "fragmentShader.txt");
@@ -37,14 +42,15 @@ NeptShark::NeptShark(GLFWwindow* window)
 		//0:create the needed buffers and store them in a VAO for later use
 		BufferHandler();
 
+		textureHandler();
 		//2: use the shader program when we want to render an object
 
 		glUseProgram(shaderProgram);
-		
-		glBindVertexArray(VAO);
 
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindVertexArray(VAO);
 		//3: now draw the object
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		//check all events and swap the buffers
@@ -95,16 +101,44 @@ void NeptShark::BufferHandler()
 
 	//position Attribute
 	//Give to OpenGL the interpetation of the data
-	glad_glVertexAttribPointer(0, //Which attribute we want to configure, atm, we are configuring layout(location = 0), which is 0 in this case
+	glVertexAttribPointer(0, //Which attribute we want to configure, atm, we are configuring layout(location = 0), which is 0 in this case
 		3, //-----------------------The size of our vertex attribute, because in this case we are using Vec3, we going to use 3 
 		GL_FLOAT, //----------------The kind of data we are using, in this case a vec* in GLSL is made up of 3 floats, so we use GL_FLOAT
 		GL_FALSE, //----------------Normalization, in this case no, because it would turn our parameters we passed to 1 and 0 
-		6 * sizeof(float), //-------The Stride, which is the space between each attribute
+		8 * sizeof(float), //-------The Stride, which is the space between each attribute
 		(void*)0); //---------------The OffSet, which is where the data begins in the buffer
 	//Enable the buffer as all buffer are by default made disabled
 	glEnableVertexAttribArray(0);
 	// colour Attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-		
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);		
+}
+
+void NeptShark::textureHandler()
+{
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	// set the texture wrapping/filtering options (on the currently bound texture object)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	//linking the image I want to use 
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
 }
