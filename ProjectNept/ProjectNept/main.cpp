@@ -11,7 +11,6 @@ const unsigned int SCREEN_HEIGHT = 600;
 //functions
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void InitGLFW();
-void texSetup();
 int checkGLFW(GLFWwindow* window);
 int gladInit();
 
@@ -27,9 +26,6 @@ int main()
 	glfwMakeContextCurrent(window);
 
 	gladInit();
-
-	texSetup();
-
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 	//ViewPort 
 
@@ -42,6 +38,7 @@ int main()
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 	//Render Loop (reference yourself to Engine.cpp for all the drawing done by the engine)
 	NeptShark* engine = new NeptShark(window);
+	//render a Rectangle
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 	//Garbage Collection
@@ -86,17 +83,4 @@ int gladInit()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
-}
-
-void texSetup()
-{
-	//setup texture wrapping
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	//border colours
-	float borderColor[] = { 1.0f, 1.0f, 0.0f , 1.0f };
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
-	//setup texel filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }

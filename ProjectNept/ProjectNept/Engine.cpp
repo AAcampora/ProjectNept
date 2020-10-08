@@ -1,13 +1,13 @@
 #include "Engine.h"
 
-//The value of each point of the vertices
+//the value of each point of the vertices
 //Vertex vertices[] = {
 //	{0.5f,  0.5f, 0.0f,		1.0f, 0.0f, 0.0f,	1.0f, 1.0f}, //top right
 //	{0.5f, -0.5f, 0.0f,	    0.0f, 1.0f, 0.0f,	1.0f, 0.0f}, //bottom right
 //	{-0.5f, -0.5f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f}, //bottom left
 //	{-0.5f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f} //top left
 //};
-
+//
 float vertices[] = {
 	// positions          // colors           // texture coords
 	 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
@@ -25,6 +25,8 @@ unsigned int indices[] = {
 NeptShark::NeptShark(GLFWwindow* window)
 {
 	ShaderComp* sCompiler = new ShaderComp("vertexShader.txt", "fragmentShader.txt");
+	BufferHandler();
+	textureHandler();
 	//Render Loop
 	while (!glfwWindowShouldClose(window)) //function glfwWindowShouldClose checks if GLFW has been instructed to close
 	{
@@ -35,23 +37,13 @@ NeptShark::NeptShark(GLFWwindow* window)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//shader Compilation
-		sCompiler->ActivateShader();
-
-		//render a Rectangle
-		//0:create the needed buffers and store them in a VAO for later use
-		BufferHandler();
-
-		textureHandler();
-		//2: use the shader program when we want to render an object
-
-		glUseProgram(shaderProgram);
-
+		//bind texture
 		glBindTexture(GL_TEXTURE_2D, texture);
+
+		//render Container
+		sCompiler->ActivateShader();
 		glBindVertexArray(VAO);
-		//3: now draw the object
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		glBindVertexArray(0);
 
 		//check all events and swap the buffers
 		glfwSwapBuffers(window); //Swap the color buffer

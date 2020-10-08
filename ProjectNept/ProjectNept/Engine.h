@@ -17,6 +17,7 @@ public:
 	void CreateShaderProgram();
 	void BufferHandler();
 	void textureHandler();
+
 private:
 	unsigned int VBO; //Vertex buffer Object ID
 	unsigned int VAO; //Vertex array Object ID
@@ -25,4 +26,5 @@ private:
 	unsigned int fragmentShader;
 	unsigned int shaderProgram;
 	unsigned int texture;
+
 };

@@ -1,2 +1,6 @@
 ﻿  Engine.cpp
+  main.cpp
+  Generating Code...
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(76): warning C4715: 'checkGLFW': not all control paths return a value
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(86): warning C4715: 'gladInit': not all control paths return a value
   ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe
