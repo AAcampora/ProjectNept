@@ -25,6 +25,9 @@ int main()
 
 	glfwMakeContextCurrent(window);
 
+	//capture mouse
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	gladInit();
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 	//ViewPort 
@@ -62,6 +65,7 @@ void InitGLFW()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	// tell GLFW to capture our mouse
 }
 
 int checkGLFW(GLFWwindow* window)
