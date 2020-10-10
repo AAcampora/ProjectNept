@@ -1,7 +1,11 @@
-﻿  Engine.cpp
-  main.cpp
-  Generating Code...
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(85,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(80): warning C4715: 'checkGLFW': not all control paths return a value
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(90): warning C4715: 'gladInit': not all control paths return a value
+﻿  main.cpp
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(106,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(107,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(111,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(112,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(114,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(115,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(123,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(83): warning C4715: 'checkGLFW': not all control paths return a value
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(93): warning C4715: 'gladInit': not all control paths return a value
   ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe

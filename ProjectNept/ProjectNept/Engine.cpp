@@ -70,12 +70,21 @@ unsigned int indices[] = {
 	1, 2, 3 //second triangle
 };
 
-NeptShark::NeptShark(GLFWwindow* window)
+NeptShark::NeptShark()
 {
-	ShaderComp* sCompiler = new ShaderComp("vertexShader.txt", "fragmentShader.txt");
 	BufferHandler();
 	textureHandler();
 
+	cam = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+	lastX = SCREEN_WIDTH / 2.0f;
+	lastY = SCREEN_HEIGHT / 2.0f;
+	firstMouse = true;
+
+}
+
+void NeptShark::MainLoop(GLFWwindow* window)
+{
+	ShaderComp* sCompiler = new ShaderComp("vertexShader.txt", "fragmentShader.txt");
 	//Render Loop
 	while (!glfwWindowShouldClose(window)) //function glfwWindowShouldClose checks if GLFW has been instructed to close
 	{
@@ -101,31 +110,13 @@ NeptShark::NeptShark(GLFWwindow* window)
 		//shader activation
 		sCompiler->ActivateShader();
 
-		//uniform handler
+		//pass the camera projection to our shader
+		glm::mat4 projection = glm::perspective(glm::radians(cam.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+		sCompiler->setMat4("projection", projection);
 
-		//creating the perspective 
-		//the model matrix is the plane where the object world transformation are applied
-		glm::mat4 model = glm::mat4(1.0f);
-		//model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-
-		//the view matrix is is the transformation of the scene from the point of view of the user
-		//by moving negativly the z axis, we are moving the scene forward in perspective of the camera
-		glm::mat4 view;
-		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-
-		//the projection matrix
-		//this creates the fustrum and the field of view
-		glm::mat4 projection;
-		projection = glm::perspective(glm::radians(45.0f), 800.f / 600.0f, 0.1f, 100.0f);
-
-		int modelLoc = glGetUniformLocation(sCompiler->ID, "model");
-		int viewLoc = glGetUniformLocation(sCompiler->ID, "view");
-		int projectionLoc = glGetUniformLocation(sCompiler->ID, "projection");
-
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//camera view
+		glm::mat4 view = cam.GetViewMatrix();
+		sCompiler->setMat4("view", view);
 
 		//render Container
 		glBindVertexArray(VAO);
@@ -162,18 +153,19 @@ void NeptShark::processInput(GLFWwindow* window)
 	//close Window
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+
 	//move forward
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		cameraPos += cameraSpeed * cameraFront;
+		cam.InputHandler(FORWARD, deltaTime);
 	//move back
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		cameraPos -= cameraSpeed * cameraFront;
+		cam.InputHandler(BACKWARD, deltaTime);
 	//move left
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		cam.InputHandler(LEFT, deltaTime);
 	//move Right
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		cam.InputHandler(RIGHT, deltaTime);
 }
 
 void NeptShark::BufferHandler() 
@@ -244,12 +236,4 @@ void NeptShark::textureHandler()
 		std::cout << "Failed to load texture" << std::endl;
 	}
 	stbi_image_free(data);
-}
-
-void NeptShark::mouse_callBack(GLFWwindow* window, double xpos, double ypos)
-{
-	glm::vec3 direction;
-	direction.x = cos(glm::radians(yaw))* cos(glm::radians(pitch));
-	direction.y = sin(glm::radians(pitch));
-	direction.z = sin(glm::radians(yaw)) *cos(glm::radians(pitch));
 }
