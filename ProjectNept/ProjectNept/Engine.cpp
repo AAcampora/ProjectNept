@@ -73,8 +73,7 @@ unsigned int indices[] = {
 NeptShark::NeptShark()
 {
 	BufferHandler();
-	textureHandler();
-
+	TextureHandler();
 	cam = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
 	lastX = SCREEN_WIDTH / 2.0f;
 	lastY = SCREEN_HEIGHT / 2.0f;
@@ -84,7 +83,10 @@ NeptShark::NeptShark()
 
 void NeptShark::MainLoop(GLFWwindow* window)
 {
-	ShaderComp* sCompiler = new ShaderComp("vertexShader.txt", "fragmentShader.txt");
+	stbi_set_flip_vertically_on_load(true);
+
+	ShaderComp sCompiler ("vertexShader.txt", "fragmentShader.txt");
+	Model ourModel("backpack/backpack.obj");
 	//Render Loop
 	while (!glfwWindowShouldClose(window)) //function glfwWindowShouldClose checks if GLFW has been instructed to close
 	{
@@ -108,30 +110,21 @@ void NeptShark::MainLoop(GLFWwindow* window)
 
 
 		//shader activation
-		sCompiler->ActivateShader();
+		sCompiler.ActivateShader();
 
 		//pass the camera projection to our shader
 		glm::mat4 projection = glm::perspective(glm::radians(cam.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
-		sCompiler->setMat4("projection", projection);
+		sCompiler.setMat4("projection", projection);
 
 		//camera view
 		glm::mat4 view = cam.GetViewMatrix();
-		sCompiler->setMat4("view", view);
+		sCompiler.setMat4("view", view);
 
-		//render Container
-		glBindVertexArray(VAO);
-		for (unsigned int i = 0; i < 10; i++)
-		{
-			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, cubePositions[i]);
-			float angle = 20.0f * i;
-			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-			sCompiler->setMat4("model", model);
-
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-		}
-
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		sCompiler.setMat4("model", model);
+		ourModel.Draw(sCompiler);
 
 		//check all events and swap the buffers
 		glfwSwapBuffers(window); //Swap the color buffer
@@ -212,7 +205,7 @@ void NeptShark::BufferHandler()
 	glEnableVertexAttribArray(2);		
 }
 
-void NeptShark::textureHandler()
+void NeptShark::TextureHandler()
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
