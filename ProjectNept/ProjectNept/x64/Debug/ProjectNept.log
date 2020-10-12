@@ -1,2 +1,4 @@
-﻿  Model.cpp
+﻿  Engine.cpp
+  The contents of <filesystem> are only available with C++17 or later.
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(102,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe

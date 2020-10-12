@@ -28,6 +28,8 @@ public:
 	void processInput(GLFWwindow* window);
 	void BufferHandler();
 	void TextureHandler();
+	void FrameBufferHandler();
+	void TestWindowQuad();
 
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
@@ -40,6 +42,9 @@ private:
 	unsigned int VBO; //Vertex buffer Object ID
 	unsigned int VAO; //Vertex array Object ID
 	unsigned int EBO; //Element Buffer Object ID
+	unsigned int FBO; //Frame Buffer object ID
+	unsigned int quadVAO, quadVBO;
+	unsigned int texColourBuffer;
 	unsigned int vertexShader;
 	unsigned int fragmentShader;
 	unsigned int shaderProgram;

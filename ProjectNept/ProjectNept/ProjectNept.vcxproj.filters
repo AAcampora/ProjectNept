@@ -66,6 +66,8 @@
   <ItemGroup>
     <Text Include="vertexShader.txt" />
     <Text Include="fragmentShader.txt" />
+    <Text Include="screenVert.txt" />
+    <Text Include="screenFrag.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="wall.jpg">

@@ -70,12 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\Assimp\include;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glad\include;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glfw-3.3.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\Assimp\Library;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glfw-3.3.2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Additional Dependencies\glfw-3.3.2\include;$(SolutionDir)\Additional Dependencies\Assimp\include;$(SolutionDir)\Additional Dependencies\glad\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Additional Dependencies\Assimp\Library;$(SolutionDir)\Additional Dependencies\glfw-3.3.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\Assimp\include;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glad\include;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glfw-3.3.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\Assimp\Library;D:\Repo\ProjectNept\ProjectNept\Additional Dependencies\glfw-3.3.2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Additional Dependencies\glfw-3.3.2\include;$(SolutionDir)\Additional Dependencies\Assimp\include;$(SolutionDir)\Additional Dependencies\glad\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Additional Dependencies\Assimp\Library;$(SolutionDir)\Additional Dependencies\glfw-3.3.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutionDir)\ProjectNept\ProjectNept\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ProjectNept\ProjectNept\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +124,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(solutionDir)\ProjectNept\ProjectNept\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ProjectNept\ProjectNept\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +153,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="fragmentShader.txt" />
+    <Text Include="screenFrag.txt" />
+    <Text Include="screenVert.txt" />
     <Text Include="vertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
