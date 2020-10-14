@@ -2,10 +2,25 @@
 layout (location = 0) in vec2 aPos;
 layout (location = 1) in vec2 aTexCoords;
 
-out vec2 TexCoords;
+out vec4 clipSpace;
+out vec2 textureCoords;
+out vec3 cameraVector;
+out vec3 fromLightVector;
+
+uniform mat4 projection;
+uniform mat4 view;
+uniform mat4 model;
+uniform vec3 cameraPos;
+uniform vec3 lightPos;
+
+const float tiling = 6.0;
 
 void main()
 {
-    TexCoords = aTexCoords;
-    gl_Position = vec4(aPos.x, aPos.y, 0.0, 1.0); 
+	vec4 WorldPos = model * vec4(aPos.x, 0.0, aPos.y, 1.0);
+	clipSpace =  projection * view *  WorldPos;
+    gl_Position =	clipSpace;
+	textureCoords = vec2(aPos.x/2.0 + 0.5, aPos.y / 2.0 + 0.5) * tiling;
+	cameraVector = cameraPos - WorldPos.xyz;
+	fromLightVector = WorldPos.xyz - lightPos;
 }  

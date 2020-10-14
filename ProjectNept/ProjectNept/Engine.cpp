@@ -2,69 +2,25 @@
 
 float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
 	   // positions   // texCoords
-	-0.3f,  1.0f,  0.0f, 1.0f,
-	-0.3f,  0.7f,  0.0f, 0.0f,
-	 0.3f,  0.7f,  1.0f, 0.0f,
+		-2.0f,  2.0f,  0.0f, 1.0f,
+		-2.0f, -2.0f,  0.0f, 0.0f,
+		 2.0f, -2.0f,  1.0f, 0.0f,
 
-	-0.3f,  1.0f,  0.0f, 1.0f,
-	 0.3f,  0.7f,  1.0f, 0.0f,
-	 0.3f,  1.0f,  1.0f, 1.0f
+		-2.0f,  2.0f,  0.0f, 1.0f,
+		 2.0f, -2.0f,  1.0f, 0.0f,
+		 2.0f,  2.0f,  1.0f, 1.0f
+
 };
 
-float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+float planeVertices[] = {
+	// positions          // texture Coords 
+	 5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
+	-5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
+	-5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-};
-glm::vec3 cubePositions[] = {
-	glm::vec3(0.0f,  0.0f,  0.0f),
-	glm::vec3(2.0f,  5.0f, -15.0f),
-	glm::vec3(-1.5f, -2.2f, -2.5f),
-	glm::vec3(-3.8f, -2.0f, -12.3f),
-	glm::vec3(2.4f, -0.4f, -3.5f),
-	glm::vec3(-1.7f,  3.0f, -7.5f),
-	glm::vec3(1.3f, -2.0f, -2.5f),
-	glm::vec3(1.5f,  2.0f, -2.5f),
-	glm::vec3(1.5f,  0.2f, -1.5f),
-	glm::vec3(-1.3f,  1.0f, -1.5f)
+	 5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
+	-5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
+	 5.0f, -0.5f, -5.0f,  2.0f, 2.0f
 };
 
 //The indices are what we are going to use to connect each points in order to make a triangle
@@ -75,11 +31,12 @@ unsigned int indices[] = {
 
 NeptShark::NeptShark()
 {
-	BufferHandler();
-	TextureHandler();
-	FrameBufferHandler();
+	//BufferHandler();
 	TestWindowQuad();
+	dudvMap = TextureHandler(dudvMap, "dudv_map.jpg");
+	normalMap = TextureHandler(normalMap, "w_normalmap.jpg");
 	cam = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+	WatBuff = new WaterFrameBuffers();
 	lastX = SCREEN_WIDTH / 2.0f;
 	lastY = SCREEN_HEIGHT / 2.0f;
 	firstMouse = true;
@@ -90,8 +47,8 @@ void NeptShark::MainLoop(GLFWwindow* window)
 {
 	stbi_set_flip_vertically_on_load(true);
 
-	ShaderComp sCompiler ("vertexShader.txt", "fragmentShader.txt");
-	ShaderComp screenShader("screenVert.txt", "screenFrag.txt");
+	ShaderComp bpShader ("vertexShader.txt", "fragmentShader.txt");
+	ShaderComp waterShader("screenVert.txt", "screenFrag.txt");
 	Model ourModel("backpack/backpack.obj");
 	//Render Loop
 	while (!glfwWindowShouldClose(window)) //function glfwWindowShouldClose checks if GLFW has been instructed to close
@@ -111,58 +68,123 @@ void NeptShark::MainLoop(GLFWwindow* window)
 		then store this for later use on the quad that we are going to use as a refelection
 		*/
 		//rendering section
-		glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+		WatBuff->BindReflectionFBO();
 		glEnable(GL_DEPTH_TEST);
 
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//shader activation
-		sCompiler.ActivateShader();
+		bpShader.ActivateShader();
 
 		//pass the camera projection to our shader
-		
-		//camera view
-		cam.Yaw += 180.0f; // rotate the camera's yaw 180 degrees around
+		float distance = 2 * (cam.Position.y - 1.0f);
+		cam.Position.y -= distance;
+		cam.Pitch = -cam.Pitch; // rotate the camera's pitch 180 degrees around
 		cam.ProcessMouseMovement(0, 0, false); // call this to make sure it updates its camera vectors, note that we disable pitch constrains for this specific case (otherwise we can't reverse camera's pitch values)
 		glm::mat4 view = cam.GetViewMatrix();
-		cam.Yaw -= 180.0f; // reset it back to its original orientation
+		cam.Pitch = -cam.Pitch;
+		cam.Position.y += distance;
 		cam.ProcessMouseMovement(0, 0, true);
-		
 		glm::mat4 projection = glm::perspective(glm::radians(cam.Zoom), (float)SCREEN_WIDTH / (float)SCREEN_WIDTH, 0.1f, 100.0f);
-
-		sCompiler.setMat4("view", view);
-		sCompiler.setMat4("projection", projection);
+		
+		bpShader.setMat4("view", view);
+		bpShader.setMat4("projection", projection);
 
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-		sCompiler.setMat4("model", model);
-		ourModel.Draw(sCompiler);
+		bpShader.setMat4("model", model);
+		ourModel.Draw(bpShader);
+
+
+		glm::mat4 model2 = glm::mat4(1.0f);
+		model2 = glm::translate(model2, glm::vec3(0.0f, -4.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model2 = glm::scale(model2, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		bpShader.setMat4("model", model2);
+		ourModel.Draw(bpShader);
 
 		//end of the frameBuffer
+		WatBuff->UnbindCurrentFBO();
+		
+
+		WatBuff->BindRefractionFBO();
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		//load our model
+		model = glm::mat4(1.0f);
+		view = cam.GetViewMatrix();
+		bpShader.setMat4("view", view);
+
+		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		bpShader.setMat4("model", model);
+		ourModel.Draw(bpShader);
+
+		model2 = glm::mat4(1.0f);
+		model2 = glm::translate(model2, glm::vec3(0.0f, -4.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model2 = glm::scale(model2, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		bpShader.setMat4("model", model2);
+		ourModel.Draw(bpShader);
+
+		//end of the frameBuffer
+		WatBuff->UnbindCurrentFBO();
+
 
 		//second pass: render everything as normal 
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
 
 		//load our model
 		model = glm::mat4(1.0f);
 		view = cam.GetViewMatrix();
-		sCompiler.setMat4("view", view);
+		bpShader.setMat4("view", view);
 
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-		sCompiler.setMat4("model", model);
-		ourModel.Draw(sCompiler);
 
-		glDisable(GL_DEPTH_TEST);
+		model2 = glm::mat4(1.0f);
+		model2 = glm::translate(model2, glm::vec3(0.0f, -4.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model2 = glm::scale(model2, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		bpShader.setMat4("model", model2);
+		ourModel.Draw(bpShader);
+		
+
+		bpShader.setMat4("model", model);
+		ourModel.Draw(bpShader);
 
 		//load our Framebuffer texture to our Quad
-		screenShader.ActivateShader();
+
+		waterShader.ActivateShader();
+		waterShader.setMat4("view", view);
+		waterShader.setMat4("projection", projection);
+		waterShader.setMat4("model", glm::mat4(1.0f));
+
+		waterShader.SetInt("reflectionTexture", 0);
+		waterShader.SetInt("refractionTexture", 1);
+		waterShader.SetInt("dudvMap", 2);
+		waterShader.SetInt("normalMap", 3);
+		waterShader.setVec3("lightColour", glm::vec3(1.0f, 1.0f, 1.0f));
+		waterShader.setVec3("lightPos", glm::vec3(10.0f, 10.0f, 5.0f));
+
+		float WaveSpeed = 0.03f;
+		float watMovement = 0.0f;
+		watMovement += WaveSpeed * glfwGetTime();
+		watMovement = fmod(watMovement, 1);
+		waterShader.SetFloat("moveFactor", watMovement);
+		waterShader.setVec3("cameraPos", cam.Position);
 		glBindVertexArray(quadVAO);
-		glBindTexture(GL_TEXTURE_2D, texColourBuffer);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, WatBuff->GetReflectionTexture());
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, WatBuff->GetRefractionTexture());
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, dudvMap);
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_2D, normalMap);
+
+		
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		//check all events and swap the buffers
@@ -178,6 +200,8 @@ NeptShark::~NeptShark()
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 	glDeleteProgram(shaderProgram);
+	WatBuff->CleanUp();
+
 }
 
 void NeptShark::processInput(GLFWwindow* window)
@@ -218,11 +242,11 @@ void NeptShark::BufferHandler()
 	glBindVertexArray(VAO);//bind the buffer to it's VAO for later use
 	glBindBuffer(GL_ARRAY_BUFFER, VBO); //assign a buffer type
 
-	//copy the data you want to transfer in the buffer
-	glBufferData(GL_ARRAY_BUFFER, //the kind of buffer
-		sizeof(vertices),//---------How much data we want to input
-		vertices,//-----------------The Data we want to pass
-		GL_STATIC_DRAW);//----------How much manipulation the data inside the buffer is allowed to have, in this case, set once and used indefinetly
+	////copy the data you want to transfer in the buffer
+	//glBufferData(GL_ARRAY_BUFFER, //the kind of buffer
+	//	sizeof(vertices),//---------How much data we want to input
+	//	vertices,//-----------------The Data we want to pass
+	//	GL_STATIC_DRAW);//----------How much manipulation the data inside the buffer is allowed to have, in this case, set once and used indefinetly
 		//Element Buffer 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
@@ -245,7 +269,7 @@ void NeptShark::BufferHandler()
 	glEnableVertexAttribArray(2);		
 }
 
-void NeptShark::TextureHandler()
+int NeptShark::TextureHandler(unsigned int texture, const char* filename )
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -257,7 +281,7 @@ void NeptShark::TextureHandler()
 
 	//linking the image I want to use 
 	int width, height, nrChannels;
-	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+	unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
 
 	if (data)
 	{
@@ -269,39 +293,7 @@ void NeptShark::TextureHandler()
 		std::cout << "Failed to load texture" << std::endl;
 	}
 	stbi_image_free(data);
-}
-
-void NeptShark::FrameBufferHandler()
-{
-	glGenFramebuffers(1, &FBO);
-	glBindFramebuffer(GL_FRAMEBUFFER, FBO);
-
-	//generate a texture
-	glGenTextures(1, &texColourBuffer);
-	glBindTexture(GL_TEXTURE_2D, texColourBuffer);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	//attach it to currently bound framebuffer object
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColourBuffer, 0);
-
-	//next we make a Render Buffer
-	unsigned int RBO;
-	glGenRenderbuffers(1, &RBO);
-	glBindRenderbuffer(GL_RENDERBUFFER, RBO);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCREEN_WIDTH, SCREEN_HEIGHT);
-	glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
-
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-	}
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	return texture;
 }
 
 void NeptShark::TestWindowQuad()
@@ -310,10 +302,11 @@ void NeptShark::TestWindowQuad()
 	glGenBuffers(1, &quadVBO);
 	glBindVertexArray(quadVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2* sizeof(float)));
 
 }

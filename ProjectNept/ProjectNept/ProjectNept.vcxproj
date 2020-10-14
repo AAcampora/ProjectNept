@@ -141,6 +141,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ShaderCompiler.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="WaterBuffers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="ShaderCompiler.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="WaterBuffers.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="fragmentShader.txt" />
