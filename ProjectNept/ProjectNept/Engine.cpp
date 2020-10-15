@@ -12,27 +12,9 @@ float quadVertices[] = { // vertex attributes for a quad that fills the entire s
 
 };
 
-float planeVertices[] = {
-	// positions          // texture Coords 
-	 5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-	-5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
-	-5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-
-	 5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-	-5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-	 5.0f, -0.5f, -5.0f,  2.0f, 2.0f
-};
-
-//The indices are what we are going to use to connect each points in order to make a triangle
-unsigned int indices[] = {
-	0, 1, 3,// first triangle
-	1, 2, 3 //second triangle
-};
-
 NeptShark::NeptShark()
 {
-	//BufferHandler();
-	TestWindowQuad();
+	WaterPlane();
 	dudvMap = TextureHandler(dudvMap, "dudv_map.jpg");
 	normalMap = TextureHandler(normalMap, "w_normalmap.jpg");
 	cam = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -106,7 +88,6 @@ void NeptShark::MainLoop(GLFWwindow* window)
 
 		//end of the frameBuffer
 		WatBuff->UnbindCurrentFBO();
-		
 
 		WatBuff->BindRefractionFBO();
 
@@ -131,7 +112,6 @@ void NeptShark::MainLoop(GLFWwindow* window)
 		//end of the frameBuffer
 		WatBuff->UnbindCurrentFBO();
 
-
 		//second pass: render everything as normal 
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
@@ -143,15 +123,13 @@ void NeptShark::MainLoop(GLFWwindow* window)
 
 		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		bpShader.setMat4("model", model);
+		ourModel.Draw(bpShader);
 
 		model2 = glm::mat4(1.0f);
 		model2 = glm::translate(model2, glm::vec3(0.0f, -4.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model2 = glm::scale(model2, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
 		bpShader.setMat4("model", model2);
-		ourModel.Draw(bpShader);
-		
-
-		bpShader.setMat4("model", model);
 		ourModel.Draw(bpShader);
 
 		//load our Framebuffer texture to our Quad
@@ -196,9 +174,8 @@ void NeptShark::MainLoop(GLFWwindow* window)
 NeptShark::~NeptShark()
 {
 	//Delete everything when the program is closed
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &EBO);
+	glDeleteVertexArrays(1, &quadVAO);
+	glDeleteBuffers(1, &quadVBO);
 	glDeleteProgram(shaderProgram);
 	WatBuff->CleanUp();
 
@@ -225,49 +202,6 @@ void NeptShark::processInput(GLFWwindow* window)
 		cam.InputHandler(RIGHT, deltaTime);
 }
 
-void NeptShark::BufferHandler() 
-{
-	
-	//first thing first, we need to generate the Vertex Array Object
-	//the VAO is a container which holds 1 or multiple buffers with their current specification. Allowing us to save our bindings
-	//which without we would have to re-instate the buffers every time we draw an object
-
-	//Buffer initialization
-	glGenVertexArrays(1, &VAO); //VAO container to hold our current buffer
-	glGenBuffers(1, &VBO);	//currently our vertex buffer, holds the information of where the vertices are drawn
-	glGenBuffers(1, &EBO); //The Element Buffer is used in order to tell OpenGl the order and what vertices to draw. 
-	
-	//Vertex Buffer
-	//when creating a buffer, always follow this pattern:
-	glBindVertexArray(VAO);//bind the buffer to it's VAO for later use
-	glBindBuffer(GL_ARRAY_BUFFER, VBO); //assign a buffer type
-
-	////copy the data you want to transfer in the buffer
-	//glBufferData(GL_ARRAY_BUFFER, //the kind of buffer
-	//	sizeof(vertices),//---------How much data we want to input
-	//	vertices,//-----------------The Data we want to pass
-	//	GL_STATIC_DRAW);//----------How much manipulation the data inside the buffer is allowed to have, in this case, set once and used indefinetly
-		//Element Buffer 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	//position Attribute
-	//Give to OpenGL the interpetation of the data
-	glVertexAttribPointer(0, //Which attribute we want to configure, atm, we are configuring layout(location = 0), which is 0 in this case
-		3, //-----------------------The size of our vertex attribute, because in this case we are using Vec3, we going to use 3 
-		GL_FLOAT, //----------------The kind of data we are using, in this case a vec* in GLSL is made up of 3 floats, so we use GL_FLOAT
-		GL_FALSE, //----------------Normalization, in this case no, because it would turn our parameters we passed to 1 and 0 
-		5 * sizeof(float), //-------The Stride, which is the space between each attribute
-		(void*)0); //---------------The OffSet, which is where the data begins in the buffer
-	//Enable the buffer as all buffer are by default made disabled
-	glEnableVertexAttribArray(0);
-	// colour Attribute
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	//glEnableVertexAttribArray(1);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(2);		
-}
 
 int NeptShark::TextureHandler(unsigned int texture, const char* filename )
 {
@@ -296,7 +230,7 @@ int NeptShark::TextureHandler(unsigned int texture, const char* filename )
 	return texture;
 }
 
-void NeptShark::TestWindowQuad()
+void NeptShark::WaterPlane()
 {
 	glGenVertexArrays(1, &quadVAO);
 	glGenBuffers(1, &quadVBO);

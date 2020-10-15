@@ -27,9 +27,8 @@ public:
 	~NeptShark();
 	void MainLoop(GLFWwindow* window);
 	void processInput(GLFWwindow* window);
-	void BufferHandler();
+	void WaterPlane();
 	int TextureHandler(unsigned int texture, const char* filename);
-	void TestWindowQuad();
 
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
@@ -40,9 +39,6 @@ public:
 	bool firstMouse;
 	
 private:
-	unsigned int VBO; //Vertex buffer Object ID
-	unsigned int VAO; //Vertex array Object ID
-	unsigned int EBO; //Element Buffer Object ID
 	unsigned int quadVAO, quadVBO;
 	unsigned int texColourBuffer;
 	unsigned int vertexShader;
@@ -55,4 +51,9 @@ private:
 
 	float WaveSpeed = 0.03f;
 	float watMovement = 0;
+
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 model2 = glm::mat4(1.0f);
+	glm::mat4 view;
+	glm::mat4 projection;
 };
