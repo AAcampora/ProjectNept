@@ -26,9 +26,6 @@ public:
 	NeptShark();
 	~NeptShark();
 	void MainLoop(GLFWwindow* window);
-	void processInput(GLFWwindow* window);
-	void WaterPlane();
-	int TextureHandler(unsigned int texture, const char* filename);
 
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
@@ -39,11 +36,7 @@ public:
 	bool firstMouse;
 	
 private:
-	unsigned int quadVAO, quadVBO;
-	unsigned int texColourBuffer;
-	unsigned int vertexShader;
-	unsigned int fragmentShader;
-	unsigned int shaderProgram;
+	unsigned int waterVAO, waterVBO;
 	unsigned int dudvMap;
 	unsigned int normalMap;
 	unsigned int loc_reflection;
@@ -56,4 +49,9 @@ private:
 	glm::mat4 model2 = glm::mat4(1.0f);
 	glm::mat4 view;
 	glm::mat4 projection;
+
+	void processInput(GLFWwindow* window);
+	void WaterPlane();
+	int TextureLoader(unsigned int texture, const char* filename);
+	void RenderScene(ShaderComp shader, glm::mat4 model, glm::mat4 model2, Model object);
 };

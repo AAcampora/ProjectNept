@@ -1,18 +1,6 @@
 ﻿  Engine.cpp
   The contents of <filesystem> are only available with C++17 or later.
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(41,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(151,43): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  main.cpp
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(152,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(152,21): warning C4244: The contents of <filesystem> are only available with C++17 or later.
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(106,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(107,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(111,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(112,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(114,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(115,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(123,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(83): warning C4715: 'checkGLFW': not all control paths return a value
-D:\Repo\ProjectNept\ProjectNept\ProjectNept\main.cpp(93): warning C4715: 'gladInit': not all control paths return a value
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(50,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(155,43): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Repo\ProjectNept\ProjectNept\ProjectNept\Engine.cpp(156,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   ProjectNept.vcxproj -> D:\Repo\ProjectNept\ProjectNept\x64\Debug\ProjectNept.exe
